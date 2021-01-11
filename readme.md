@@ -1,4 +1,4 @@
-Public Repository for Course Projects 课程项目
+Course Projects 课程项目
 ===
 The repository contains past projects of course assignments. They are no longer private for the assignemnts have already been viewed and ranked.
 
