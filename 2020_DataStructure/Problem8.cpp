@@ -4,33 +4,33 @@
 #include <stdexcept>
 #include <fstream>
 
-// ¶àÖØÍ¼ËµÃ÷
-// ÓÉÓÚ¶àÖØÍ¼²¢²»Ó°Ïì×îĞ¡Éú³ÉÊ÷Ëã·¨µÄÕıÈ·ĞÔ£¬ÏÂÃæµÄºê¶¨Òå¸ø³öÒ»¸öÔÊĞí/½ûÖ¹¶àÖØÍ¼µÄÉèÖÃ
-// µ±¶àÖØÍ¼±»½ûÖ¹Ê±£¬ÈôÁ½¸ö¶¥µãAºÍB¼äÒÑ¾­ÓĞÈ¨ÎªwµÄ±ß£¬ÔòAºÍB¼äÂ·¾¶ÊıÎª1µÄ×î¶ÌÂ·¾¶½«±»¹Ì¶¨Îªw£¬ÎŞ·¨ĞŞ¸Ä
-// µ±¶àÖØÍ¼ÔÊĞíÊ±£¬ÔÊĞíËõ¶ÌÁ½¸ö¶¥µã¼äµÄÖ±½ÓÁ¬±ßµÄ×îĞ¡±ßÈ¨£¬¸Ã²Ù×÷¿ÉÒÔÍ¨¹ı¼Ó±ßÊ¹Í¼³ÉÎª¶àÖØÍ¼ÊµÏÖ
+// å¤šé‡å›¾è¯´æ˜
+// ç”±äºå¤šé‡å›¾å¹¶ä¸å½±å“æœ€å°ç”Ÿæˆæ ‘ç®—æ³•çš„æ­£ç¡®æ€§ï¼Œä¸‹é¢çš„å®å®šä¹‰ç»™å‡ºä¸€ä¸ªå…è®¸/ç¦æ­¢å¤šé‡å›¾çš„è®¾ç½®
+// å½“å¤šé‡å›¾è¢«ç¦æ­¢æ—¶ï¼Œè‹¥ä¸¤ä¸ªé¡¶ç‚¹Aå’ŒBé—´å·²ç»æœ‰æƒä¸ºwçš„è¾¹ï¼Œåˆ™Aå’ŒBé—´è·¯å¾„æ•°ä¸º1çš„æœ€çŸ­è·¯å¾„å°†è¢«å›ºå®šä¸ºwï¼Œæ— æ³•ä¿®æ”¹
+// å½“å¤šé‡å›¾å…è®¸æ—¶ï¼Œå…è®¸ç¼©çŸ­ä¸¤ä¸ªé¡¶ç‚¹é—´çš„ç›´æ¥è¿è¾¹çš„æœ€å°è¾¹æƒï¼Œè¯¥æ“ä½œå¯ä»¥é€šè¿‡åŠ è¾¹ä½¿å›¾æˆä¸ºå¤šé‡å›¾å®ç°
 
-#define ALLOW_MULTIEDGE false //ÊÇ·ñÔÊĞí¶àÖØ±ß£¬ÊÇÔòÎªtrue
+#define ALLOW_MULTIEDGE false //æ˜¯å¦å…è®¸å¤šé‡è¾¹ï¼Œæ˜¯åˆ™ä¸ºtrue
 
 
 
 //************************************
-// È«Ãû:  isDigitStr
-// ¹¦ÄÜ: ÅĞ¶ÏÒ»¸ö×Ö·û´®ÊÇ·ñÊÇÊı×Ö×Ö·û´®
-// È¨ÏŞ:    public 
-// ·µ»Ø:   bool
-// ²ÎÊı: std::string argv
+// å…¨å:  isDigitStr
+// åŠŸèƒ½: åˆ¤æ–­ä¸€ä¸ªå­—ç¬¦ä¸²æ˜¯å¦æ˜¯æ•°å­—å­—ç¬¦ä¸²
+// æƒé™:    public 
+// è¿”å›:   bool
+// å‚æ•°: std::string argv
 //************************************
 bool isDigitStr(std::string argv) {
 	for (int i = 0; i < argv.length(); i++)if (!(argv[i] >= '0'&&argv[i] <= '9'))return false;
 	return true;
 }
 
-class VertexInfo; //¶¥µãĞÅÏ¢
-template<class Type> class LinkedListNode; //Á´±í½áµã
-template<class Type> class LinkedList; //Á´±í
-class Edge; //±ß
-template<class Type>class AVLTreeNode; //AVL½áµã
-template<class TypeA>class Pair; //µã¶Ô
+class VertexInfo; //é¡¶ç‚¹ä¿¡æ¯
+template<class Type> class LinkedListNode; //é“¾è¡¨ç»“ç‚¹
+template<class Type> class LinkedList; //é“¾è¡¨
+class Edge; //è¾¹
+template<class Type>class AVLTreeNode; //AVLç»“ç‚¹
+template<class TypeA>class Pair; //ç‚¹å¯¹
 
 
 template<class TypeA>class Pair {
@@ -49,31 +49,31 @@ public:
 	}
 };
 
-template<class Type> class LinkedListNode { // Á´±í½ÚµãĞÅÏ¢
+template<class Type> class LinkedListNode { // é“¾è¡¨èŠ‚ç‚¹ä¿¡æ¯
 public:
 	Type data;
 	LinkedListNode *pred = nullptr, *succ = nullptr;
 };
-template<class Type> class LinkedList { //Á´±íÀà
+template<class Type> class LinkedList { //é“¾è¡¨ç±»
 private:
-	LinkedListNode<Type> *head = nullptr, *tail = nullptr; //Á´±íÍ·Î²Ö¸Õë
-	int listSize = 0; //Á´±í´óĞ¡
+	LinkedListNode<Type> *head = nullptr, *tail = nullptr; //é“¾è¡¨å¤´å°¾æŒ‡é’ˆ
+	int listSize = 0; //é“¾è¡¨å¤§å°
 public:
 	LinkedList<Type>();
 	~LinkedList<Type>();
-	LinkedListNode<Type>* GetHead(); //»ñµÃÍ·Ö¸ÕëµØÖ·
-	void InsertTail(const Type& data); //ÔÚÁ´±íÎ²²¿²åÈëÄÚÈİ
-	void PopTail(); //É¾³ıÁ´±íÎ²²¿½áµã
-	LinkedListNode<Type>* GetTail(); //»ñÈ¡Á´±íÎ²Ö¸Õë
-	int GetSize(); //»ñÈ¡Á´±í´óĞ¡
-	void Clear(); //Çå¿ÕÁ´±í
+	LinkedListNode<Type>* GetHead(); //è·å¾—å¤´æŒ‡é’ˆåœ°å€
+	void InsertTail(const Type& data); //åœ¨é“¾è¡¨å°¾éƒ¨æ’å…¥å†…å®¹
+	void PopTail(); //åˆ é™¤é“¾è¡¨å°¾éƒ¨ç»“ç‚¹
+	LinkedListNode<Type>* GetTail(); //è·å–é“¾è¡¨å°¾æŒ‡é’ˆ
+	int GetSize(); //è·å–é“¾è¡¨å¤§å°
+	void Clear(); //æ¸…ç©ºé“¾è¡¨
 };
 
-class Edge { // ±ß¶ÔÏó
+class Edge { // è¾¹å¯¹è±¡
 public:
-	int to, weight; //±ßµÄÖÕµãºÍÈ¨Öµ
-	LinkedListNode<LinkedList<Edge>*> *toLinkedListPtr = nullptr; //±ßÖÕµãËùÔÚÁÚ½Ó±íÖĞµÄÎ»ÖÃ
-	AVLTreeNode<VertexInfo> *uInfPtr, *vInfPtr; //±ßÆğµãºÍÖÕµãËùÔÚAVL½áµãÖĞµÄÖ¸Õë
+	int to, weight; //è¾¹çš„ç»ˆç‚¹å’Œæƒå€¼
+	LinkedListNode<LinkedList<Edge>*> *toLinkedListPtr = nullptr; //è¾¹ç»ˆç‚¹æ‰€åœ¨é‚»æ¥è¡¨ä¸­çš„ä½ç½®
+	AVLTreeNode<VertexInfo> *uInfPtr, *vInfPtr; //è¾¹èµ·ç‚¹å’Œç»ˆç‚¹æ‰€åœ¨AVLç»“ç‚¹ä¸­çš„æŒ‡é’ˆ
 	bool operator >(Edge p) {
 		return weight > p.weight;
 	}
@@ -84,12 +84,12 @@ public:
 		return weight == p.weight;
 	}
 };
-class VertexInfo { //´¢´æ¶¥µãĞÅÏ¢
+class VertexInfo { //å‚¨å­˜é¡¶ç‚¹ä¿¡æ¯
 public:
-	int identity; //¶¥µã±àºÅ
-	std::string alias; //¶¥µãÃû³Æ
-	AVLTreeNode<VertexInfo>  *bstNodePtr = nullptr; //¶¥µãÔÚAVLÊ÷ÖĞ½áµãµÄµØÖ·
-	LinkedListNode<LinkedList<Edge>*> *linklistNodePtr = nullptr; //¶¥µãÔÚÁÚ½Ó±íÖĞ´æ´¢±ßµÄÁ´±íµÄµØÖ·
+	int identity; //é¡¶ç‚¹ç¼–å·
+	std::string alias; //é¡¶ç‚¹åç§°
+	AVLTreeNode<VertexInfo>  *bstNodePtr = nullptr; //é¡¶ç‚¹åœ¨AVLæ ‘ä¸­ç»“ç‚¹çš„åœ°å€
+	LinkedListNode<LinkedList<Edge>*> *linklistNodePtr = nullptr; //é¡¶ç‚¹åœ¨é‚»æ¥è¡¨ä¸­å­˜å‚¨è¾¹çš„é“¾è¡¨çš„åœ°å€
 	bool operator <(const VertexInfo& p) {
 		return alias < p.alias;
 	}
@@ -100,97 +100,97 @@ public:
 		return alias > p.alias;
 	}
 };
-template<class Type>class AVLTreeNode { //AVLÊı½ÚµãĞÅÏ¢
+template<class Type>class AVLTreeNode { //AVLæ•°èŠ‚ç‚¹ä¿¡æ¯
 public:
 	Type data;
 	AVLTreeNode *leftChild = nullptr, *rightChild = nullptr;
 	int height = 0;
 };
-template<class Type>class AVLTree { //AVLÊ÷
+template<class Type>class AVLTree { //AVLæ ‘
 private:
-	AVLTreeNode<Type> *root = nullptr; //¸ù½Úµã
-	int GetBalanceFactor(AVLTreeNode<Type>* node); //»ñÈ¡Æ½ºâÒò×Ó
-	int GetMaxChildHeight(AVLTreeNode<Type>* node); //»ñÈ¡×î´ó×ÓÊ÷¸ß¶È
-	AVLTreeNode<Type>* RotationL(AVLTreeNode<Type>* node); //×óĞı
-	AVLTreeNode<Type>* RotationR(AVLTreeNode<Type>* node); //ÓÒĞı
-	AVLTreeNode<Type>* RotationLR(AVLTreeNode<Type>* node); //×óÓÒĞı
-	AVLTreeNode<Type>* RotationRL(AVLTreeNode<Type>* node); //ÓÒ×óĞı
-	AVLTreeNode<Type>* Insert(Type value, AVLTreeNode<Type>* node); //²åÈë
+	AVLTreeNode<Type> *root = nullptr; //æ ¹èŠ‚ç‚¹
+	int GetBalanceFactor(AVLTreeNode<Type>* node); //è·å–å¹³è¡¡å› å­
+	int GetMaxChildHeight(AVLTreeNode<Type>* node); //è·å–æœ€å¤§å­æ ‘é«˜åº¦
+	AVLTreeNode<Type>* RotationL(AVLTreeNode<Type>* node); //å·¦æ—‹
+	AVLTreeNode<Type>* RotationR(AVLTreeNode<Type>* node); //å³æ—‹
+	AVLTreeNode<Type>* RotationLR(AVLTreeNode<Type>* node); //å·¦å³æ—‹
+	AVLTreeNode<Type>* RotationRL(AVLTreeNode<Type>* node); //å³å·¦æ—‹
+	AVLTreeNode<Type>* Insert(Type value, AVLTreeNode<Type>* node); //æ’å…¥
 public:
 	~AVLTree();
-	AVLTreeNode<Type>* LastInsertedNode = nullptr; //ÉÏÒ»¸ö²åÈëµÄ½áµã
-	void Insert(const Type& value); //²åÈë½áµã
-	Type Find(Type value, bool &success); //²éÕÒ½áµã
+	AVLTreeNode<Type>* LastInsertedNode = nullptr; //ä¸Šä¸€ä¸ªæ’å…¥çš„ç»“ç‚¹
+	void Insert(const Type& value); //æ’å…¥ç»“ç‚¹
+	Type Find(Type value, bool &success); //æŸ¥æ‰¾ç»“ç‚¹
 
 };
-class HashTable { //¹şÏ£±í
+class HashTable { //å“ˆå¸Œè¡¨
 private:
-	AVLTree<VertexInfo> *bucket; //É¢ÁĞ±í
-	const int modFactor = 943; //È¡Ä£µÄÖÊÊı
-	int totalCounter = 0; //ÔªËØ¸öÊı
+	AVLTree<VertexInfo> *bucket; //æ•£åˆ—è¡¨
+	const int modFactor = 943; //å–æ¨¡çš„è´¨æ•°
+	int totalCounter = 0; //å…ƒç´ ä¸ªæ•°
 public:
 	HashTable();
 	~HashTable();
-	int GetHashCode(std::string alias); //»ñµÃÒ»¸ö×Ö·û´®µÄÉ¢ÁĞÖµ
-	AVLTreeNode<VertexInfo>* Insert(std::string alias); //ÔÚÉ¢ÁĞ±íÖĞ²åÈëÒ»¸ö¶¥µã
-	VertexInfo Find(std::string alias, bool &success); //ÔÚÉ¢ÁĞ±íÖĞ²éÕÒÒ»¸ö¶¥µã
+	int GetHashCode(std::string alias); //è·å¾—ä¸€ä¸ªå­—ç¬¦ä¸²çš„æ•£åˆ—å€¼
+	AVLTreeNode<VertexInfo>* Insert(std::string alias); //åœ¨æ•£åˆ—è¡¨ä¸­æ’å…¥ä¸€ä¸ªé¡¶ç‚¹
+	VertexInfo Find(std::string alias, bool &success); //åœ¨æ•£åˆ—è¡¨ä¸­æŸ¥æ‰¾ä¸€ä¸ªé¡¶ç‚¹
 };
-class AdjacentTable { //ÁÚ½Ó±í
+class AdjacentTable { //é‚»æ¥è¡¨
 public:
-	int vertexCounter = 0; //¶¥µã¸öÊı
-	LinkedList<LinkedList<Edge>*> table; //ÁÚ½Ó±í
-	LinkedListNode<LinkedList<Edge>*>* InsertNewNode(); //ĞÂ½¨¶¥µã
-	void AddEdge(LinkedListNode<LinkedList<Edge>*>* u, LinkedListNode<LinkedList<Edge>*>* v, int w, AVLTreeNode<VertexInfo>* uInfPtr, AVLTreeNode<VertexInfo>* vInfPtr); //ĞÂ½¨Á¬±ß
+	int vertexCounter = 0; //é¡¶ç‚¹ä¸ªæ•°
+	LinkedList<LinkedList<Edge>*> table; //é‚»æ¥è¡¨
+	LinkedListNode<LinkedList<Edge>*>* InsertNewNode(); //æ–°å»ºé¡¶ç‚¹
+	void AddEdge(LinkedListNode<LinkedList<Edge>*>* u, LinkedListNode<LinkedList<Edge>*>* v, int w, AVLTreeNode<VertexInfo>* uInfPtr, AVLTreeNode<VertexInfo>* vInfPtr); //æ–°å»ºè¿è¾¹
 };
 
-template<class Type>class MinHeap { //×îĞ¡¶Ñ
+template<class Type>class MinHeap { //æœ€å°å †
 public:
-	Type *heapArray = nullptr; //´¢´æ¶ÑµÄÊı×é
-	int heapSize = 0; //¶ÑÔªËØµÄ¸öÊı
-	void Rebuild(int size); //ÖØĞÂÉèÖÃ¶ÑµÄ×î´óÈİÁ¿
-	void Insert(Type x);//ÔÚ¶ÑÖĞ²åÈëÔªËØ
-	Type GetTop();//»ñµÃ¶Ñ¶¥ÔªËØ
-	void Pop();//É¾³ı¶Ñ¶¥ÔªËØ
-	void SiftUp(int node); //ÏòÉÏµ÷Õû
-	void SiftDown(int node);//ÏòÏÂµ÷Õû
-	void Swap(Type& x, Type&y);//½»»»ÔªËØ
+	Type *heapArray = nullptr; //å‚¨å­˜å †çš„æ•°ç»„
+	int heapSize = 0; //å †å…ƒç´ çš„ä¸ªæ•°
+	void Rebuild(int size); //é‡æ–°è®¾ç½®å †çš„æœ€å¤§å®¹é‡
+	void Insert(Type x);//åœ¨å †ä¸­æ’å…¥å…ƒç´ 
+	Type GetTop();//è·å¾—å †é¡¶å…ƒç´ 
+	void Pop();//åˆ é™¤å †é¡¶å…ƒç´ 
+	void SiftUp(int node); //å‘ä¸Šè°ƒæ•´
+	void SiftDown(int node);//å‘ä¸‹è°ƒæ•´
+	void Swap(Type& x, Type&y);//äº¤æ¢å…ƒç´ 
 	~MinHeap() { if (heapArray)delete[]heapArray; }
 };
-class Graph { // ´¢´æÍ¼µÄĞÅÏ¢
+class Graph { // å‚¨å­˜å›¾çš„ä¿¡æ¯
 public:
-	AdjacentTable adj; //ÁÚ½Ó±í(ÒÔÕûÊıÎªIDµÄÍ¼)
-	HashTable dict; //¶¥µãÃû³Æ×Öµä
+	AdjacentTable adj; //é‚»æ¥è¡¨(ä»¥æ•´æ•°ä¸ºIDçš„å›¾)
+	HashTable dict; //é¡¶ç‚¹åç§°å­—å…¸
 	int vertexCounter = 0, edgeCounter = 0;
-	void NewNode(std::string alias); //ĞÂ½¨½Úµã
-	void AddEdge(std::string u, std::string v, int w, bool showTip = true); //Ìí¼ÓÁ¬±ß
+	void NewNode(std::string alias); //æ–°å»ºèŠ‚ç‚¹
+	void AddEdge(std::string u, std::string v, int w, bool showTip = true); //æ·»åŠ è¿è¾¹
 };
 
-class MinSpanningTree { //×îĞ¡Éú³ÉÊ÷
+class MinSpanningTree { //æœ€å°ç”Ÿæˆæ ‘
 public:
-	Graph GraphInfo; //´¢´æÍ¼µÄĞÅÏ¢
-	LinkedList<Edge> Result; //´¢´æ×îĞ¡Éú³ÉÊ÷½á¹û
-	AVLTree<Pair<std::string>> MultipleEdgeCheck; //ÓÃÓÚ¼ì²éÖØ±ß
+	Graph GraphInfo; //å‚¨å­˜å›¾çš„ä¿¡æ¯
+	LinkedList<Edge> Result; //å‚¨å­˜æœ€å°ç”Ÿæˆæ ‘ç»“æœ
+	AVLTree<Pair<std::string>> MultipleEdgeCheck; //ç”¨äºæ£€æŸ¥é‡è¾¹
 	bool AnswerStat = false;
 
-	void NewNode(std::string alias); //ĞÂ½¨½Úµã
-	void AddEdge(std::string u, std::string w, int v); //Ìí¼ÓÁ¬±ß
-	void SolveMST_Prim(std::string startingPoint); //Çó½â×îĞ¡Éú³ÉÊ÷
-	void PrintResult(); //Êä³ö½á¹û
-	void ClearResult() { Result.Clear(); } //ÖØÖÃ½á¹û
+	void NewNode(std::string alias); //æ–°å»ºèŠ‚ç‚¹
+	void AddEdge(std::string u, std::string w, int v); //æ·»åŠ è¿è¾¹
+	void SolveMST_Prim(std::string startingPoint); //æ±‚è§£æœ€å°ç”Ÿæˆæ ‘
+	void PrintResult(); //è¾“å‡ºç»“æœ
+	void ClearResult() { Result.Clear(); } //é‡ç½®ç»“æœ
 };
 
-class ElectricitySystem_Solution { //Ôì¼ÛÏµÍ³
+class ElectricitySystem_Solution { //é€ ä»·ç³»ç»Ÿ
 public:
-	MinSpanningTree MST; //Í¼µÄ´¢´æºÍ×îĞ¡Éú³ÉÊ÷Çó½â
+	MinSpanningTree MST; //å›¾çš„å‚¨å­˜å’Œæœ€å°ç”Ÿæˆæ ‘æ±‚è§£
 
-	void ShowMenu(); //ÏÔÊ¾²Ëµ¥
-	void Main(); //Ö÷½çÃæ
+	void ShowMenu(); //æ˜¾ç¤ºèœå•
+	void Main(); //ä¸»ç•Œé¢
 };
 
 
 
 
-//Á´±íÀà¶¨Òå
+//é“¾è¡¨ç±»å®šä¹‰
 template<class Type> LinkedList<Type>::LinkedList() {
 	head = new LinkedListNode<Type>;
 	tail = head;
@@ -206,10 +206,10 @@ template<class Type>LinkedList<Type>::~LinkedList() {
 	listSize = 0;
 }
 //************************************
-// È«Ãû:  LinkedList<Type>::Clear
-// ¹¦ÄÜ: Çå¿Õ²¢ÖØĞÂ³õÊ¼»¯Á´±í
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
+// å…¨å:  LinkedList<Type>::Clear
+// åŠŸèƒ½: æ¸…ç©ºå¹¶é‡æ–°åˆå§‹åŒ–é“¾è¡¨
+// æƒé™:    public 
+// è¿”å›:   void
 //************************************
 template<class Type>void LinkedList<Type>::Clear() {
 	if (head == nullptr) return;
@@ -224,11 +224,11 @@ template<class Type>void LinkedList<Type>::Clear() {
 	tail = head;
 }
 //************************************
-// È«Ãû:  LinkedList::InsertTail
-// ¹¦ÄÜ: ÔÚÁ´±íÎ²²¿²åÈëÔªËØ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: const Type & data ÔªËØµÄÖµ
+// å…¨å:  LinkedList::InsertTail
+// åŠŸèƒ½: åœ¨é“¾è¡¨å°¾éƒ¨æ’å…¥å…ƒç´ 
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: const Type & data å…ƒç´ çš„å€¼
 //************************************
 template<class Type>void LinkedList<Type>::InsertTail(const Type& data) {
 	LinkedListNode<Type> *newEl = new LinkedListNode<Type>;
@@ -240,15 +240,15 @@ template<class Type>void LinkedList<Type>::InsertTail(const Type& data) {
 	listSize++;
 }
 //************************************
-// È«Ãû:  LinkedList::GetHead
-// ¹¦ÄÜ: »ñÈ¡Á´±í±íÍ·Ö¸Õë
-// È¨ÏŞ:    public 
-// ·µ»Ø:   std::*
+// å…¨å:  LinkedList::GetHead
+// åŠŸèƒ½: è·å–é“¾è¡¨è¡¨å¤´æŒ‡é’ˆ
+// æƒé™:    public 
+// è¿”å›:   std::*
 //************************************
 template<class Type>LinkedListNode<Type>* LinkedList<Type>::GetHead() {
 	return head;
 }
-template<class Type>void LinkedList<Type>::PopTail() { //É¾³ıÎ²½áµã
+template<class Type>void LinkedList<Type>::PopTail() { //åˆ é™¤å°¾ç»“ç‚¹
 	if (tail != head) {
 		LinkedListNode<Type>* tailPred = tail->pred;
 		tailPred->succ = nullptr;
@@ -258,57 +258,57 @@ template<class Type>void LinkedList<Type>::PopTail() { //É¾³ıÎ²½áµã
 	}
 }
 //************************************
-// È«Ãû:  LinkedList::GetTail
-// ¹¦ÄÜ: »ñÈ¡Á´±í±íÎ²Ö¸Õë
-// È¨ÏŞ:    public 
-// ·µ»Ø:   std::*
+// å…¨å:  LinkedList::GetTail
+// åŠŸèƒ½: è·å–é“¾è¡¨è¡¨å°¾æŒ‡é’ˆ
+// æƒé™:    public 
+// è¿”å›:   std::*
 //************************************
 template<class Type> LinkedListNode<Type>* LinkedList<Type>::GetTail() {
 	return tail;
 }
 //************************************
-// È«Ãû:  LinkedList::GetSize
-// ¹¦ÄÜ: »ñÈ¡Á´±í´óĞ¡
-// È¨ÏŞ:    public 
-// ·µ»Ø:   int
+// å…¨å:  LinkedList::GetSize
+// åŠŸèƒ½: è·å–é“¾è¡¨å¤§å°
+// æƒé™:    public 
+// è¿”å›:   int
 //************************************
 template<class Type> int LinkedList<Type>::GetSize() {
 	return listSize;
 }
-// AVL Æ½ºâÊ÷ ¶¨Òå¿ªÊ¼
+// AVL å¹³è¡¡æ ‘ å®šä¹‰å¼€å§‹
 
 //************************************
-// È«Ãû:  AVLTree::GetBalanceFactor
-// ¹¦ÄÜ: »ñÈ¡AVL½áµãµÄÆ½ºâÒò×Ó
-// È¨ÏŞ:    private 
-// ·µ»Ø:   int
-// ²ÎÊı: AVLTreeNode<Type> * node »ñÈ¡Æ½ºâÒò×ÓµÄ½áµã
+// å…¨å:  AVLTree::GetBalanceFactor
+// åŠŸèƒ½: è·å–AVLç»“ç‚¹çš„å¹³è¡¡å› å­
+// æƒé™:    private 
+// è¿”å›:   int
+// å‚æ•°: AVLTreeNode<Type> * node è·å–å¹³è¡¡å› å­çš„ç»“ç‚¹
 //************************************
-template<class Type>int AVLTree<Type>::GetBalanceFactor(AVLTreeNode<Type>* node) { //»ñÈ¡Æ½ºâÒò×Ó
+template<class Type>int AVLTree<Type>::GetBalanceFactor(AVLTreeNode<Type>* node) { //è·å–å¹³è¡¡å› å­
 	int lch = (node->leftChild) ? node->leftChild->height : 0;
 	int rch = (node->rightChild) ? node->rightChild->height : 0;
 	return lch - rch;
 }
 //************************************
-// È«Ãû:  AVLTree::GetMaxChildHeight
-// ¹¦ÄÜ: »ñÈ¡×î´ó×ÓÊ÷¸ß¶È
-// È¨ÏŞ:    private 
-// ·µ»Ø:   int
-// ²ÎÊı: AVLTreeNode<Type> * node »ñÈ¡×ÓÊ÷¸ß¶ÈµÄ½áµã
+// å…¨å:  AVLTree::GetMaxChildHeight
+// åŠŸèƒ½: è·å–æœ€å¤§å­æ ‘é«˜åº¦
+// æƒé™:    private 
+// è¿”å›:   int
+// å‚æ•°: AVLTreeNode<Type> * node è·å–å­æ ‘é«˜åº¦çš„ç»“ç‚¹
 //************************************
-template<class Type>int AVLTree<Type>::GetMaxChildHeight(AVLTreeNode<Type>* node) { //»ñÈ¡×ÓÊ÷×î´ó¸ß¶È
+template<class Type>int AVLTree<Type>::GetMaxChildHeight(AVLTreeNode<Type>* node) { //è·å–å­æ ‘æœ€å¤§é«˜åº¦
 	int lch = (node->leftChild) ? node->leftChild->height : 0;
 	int rch = (node->rightChild) ? node->rightChild->height : 0;
 	return (lch > rch) ? lch : rch;
 }
 //************************************
-// È«Ãû:  AVLTree::RotationL
-// ¹¦ÄÜ: AVL×óĞı
-// È¨ÏŞ:    private 
-// ·µ»Ø:   AVLTreeNode<Type>* ×óĞıºóµÄ¸ù½Úµã
-// ²ÎÊı: AVLTreeNode<Type> * node ×óĞı²Ù×÷µÄ(×ÓÊ÷µÄ)¸ù½áµã
+// å…¨å:  AVLTree::RotationL
+// åŠŸèƒ½: AVLå·¦æ—‹
+// æƒé™:    private 
+// è¿”å›:   AVLTreeNode<Type>* å·¦æ—‹åçš„æ ¹èŠ‚ç‚¹
+// å‚æ•°: AVLTreeNode<Type> * node å·¦æ—‹æ“ä½œçš„(å­æ ‘çš„)æ ¹ç»“ç‚¹
 //************************************
-template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationL(AVLTreeNode<Type>* node) { //×óĞı£¨¶ÔÓÚ R-R ĞÍ£©
+template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationL(AVLTreeNode<Type>* node) { //å·¦æ—‹ï¼ˆå¯¹äº R-R å‹ï¼‰
 	AVLTreeNode<Type> *rightChild = node->rightChild;
 	node->rightChild = rightChild->leftChild;
 	rightChild->leftChild = node;
@@ -318,13 +318,13 @@ template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationL(AVLTreeNode<Type
 	return rightChild;
 }
 //************************************
-// È«Ãû:  AVLTree::RotationR
-// ¹¦ÄÜ: AVL ÓÒĞı
-// È¨ÏŞ:    private 
-// ·µ»Ø:   AVLTreeNode<Type>* ÓÒĞıºóµÄ¸ù½Úµã
-// ²ÎÊı: AVLTreeNode<Type> * node ÓÒĞı²Ù×÷µÄ¸ù½Úµã
+// å…¨å:  AVLTree::RotationR
+// åŠŸèƒ½: AVL å³æ—‹
+// æƒé™:    private 
+// è¿”å›:   AVLTreeNode<Type>* å³æ—‹åçš„æ ¹èŠ‚ç‚¹
+// å‚æ•°: AVLTreeNode<Type> * node å³æ—‹æ“ä½œçš„æ ¹èŠ‚ç‚¹
 //************************************
-template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationR(AVLTreeNode<Type>* node) { //ÓÒĞı£¨¶ÔÓÚL-LĞÍ£©
+template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationR(AVLTreeNode<Type>* node) { //å³æ—‹ï¼ˆå¯¹äºL-Lå‹ï¼‰
 	AVLTreeNode<Type> *leftChild = node->leftChild;
 	node->leftChild = leftChild->rightChild;
 	leftChild->rightChild = node;
@@ -334,38 +334,38 @@ template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationR(AVLTreeNode<Type
 	return leftChild;
 }
 //************************************
-// È«Ãû:  AVLTree::RotationLR
-// ¹¦ÄÜ: AVL×óĞı-ÓÒĞı
-// È¨ÏŞ:    private 
-// ·µ»Ø:   AVLTreeNode<Type>* Ğı×ªºóµÄ¸ù½Úµã
-// ²ÎÊı: AVLTreeNode<Type> * node ½øĞĞĞı×ªµÄ¸ù½Úµã
+// å…¨å:  AVLTree::RotationLR
+// åŠŸèƒ½: AVLå·¦æ—‹-å³æ—‹
+// æƒé™:    private 
+// è¿”å›:   AVLTreeNode<Type>* æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+// å‚æ•°: AVLTreeNode<Type> * node è¿›è¡Œæ—‹è½¬çš„æ ¹èŠ‚ç‚¹
 //************************************
-template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationLR(AVLTreeNode<Type>* node) { //ÏÈ×óĞı×ªºóÓÒĞı £¨¶ÔÓÚL-RĞÍ)
+template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationLR(AVLTreeNode<Type>* node) { //å…ˆå·¦æ—‹è½¬åå³æ—‹ ï¼ˆå¯¹äºL-Rå‹)
 	node->leftChild = RotationL(node->leftChild);
 	return RotationR(node);
 }
 //************************************
-// È«Ãû:  AVLTree::RotationRL
-// ¹¦ÄÜ: AVL ÓÒĞı-×óĞı
-// È¨ÏŞ:    private 
-// ·µ»Ø:   AVLTreeNode<Type>* Ğı×ªºóµÄ¸ù½Úµã
-// ²ÎÊı: AVLTreeNode<Type> * node ½øĞĞĞı×ªµÄ¸ù½Úµã
+// å…¨å:  AVLTree::RotationRL
+// åŠŸèƒ½: AVL å³æ—‹-å·¦æ—‹
+// æƒé™:    private 
+// è¿”å›:   AVLTreeNode<Type>* æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+// å‚æ•°: AVLTreeNode<Type> * node è¿›è¡Œæ—‹è½¬çš„æ ¹èŠ‚ç‚¹
 //************************************
-template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationRL(AVLTreeNode<Type>* node) { //ÏÈÓÒĞıºó×óĞı£¨¶ÔÓÚR-LĞÍ£©
+template<class Type>AVLTreeNode<Type>* AVLTree<Type>::RotationRL(AVLTreeNode<Type>* node) { //å…ˆå³æ—‹åå·¦æ—‹ï¼ˆå¯¹äºR-Lå‹ï¼‰
 	node->rightChild = RotationR(node->rightChild);
 	return RotationL(node);
 }
 
 //************************************
-// È«Ãû:  AVLTree::Insert
-// ¹¦ÄÜ:  AVL ²åÈë
-// È¨ÏŞ:    public 
-// ·µ»Ø:   AVLTreeNode<Type>* ²åÈë½áµãµÄµØÖ·
-// ²ÎÊı: Type value Òª²åÈëµÄÖµ
-// ²ÎÊı: AVLTreeNode<Type> * node µ±Ç°²éÕÒµÄ½áµã
+// å…¨å:  AVLTree::Insert
+// åŠŸèƒ½:  AVL æ’å…¥
+// æƒé™:    public 
+// è¿”å›:   AVLTreeNode<Type>* æ’å…¥ç»“ç‚¹çš„åœ°å€
+// å‚æ•°: Type value è¦æ’å…¥çš„å€¼
+// å‚æ•°: AVLTreeNode<Type> * node å½“å‰æŸ¥æ‰¾çš„ç»“ç‚¹
 //************************************
-template<class Type>AVLTreeNode<Type>* AVLTree<Type>::Insert(Type value, AVLTreeNode<Type>* node) { //½áµã²åÈë
-	//³õÊ¼»¯¿ÕÊ÷
+template<class Type>AVLTreeNode<Type>* AVLTree<Type>::Insert(Type value, AVLTreeNode<Type>* node) { //ç»“ç‚¹æ’å…¥
+	//åˆå§‹åŒ–ç©ºæ ‘
 	if (root == nullptr) {
 		root = new AVLTreeNode<Type>;
 		root->data = value;
@@ -374,7 +374,7 @@ template<class Type>AVLTreeNode<Type>* AVLTree<Type>::Insert(Type value, AVLTree
 		return root;
 	}
 
-	//²åÈë½Úµã
+	//æ’å…¥èŠ‚ç‚¹
 	AVLTreeNode<Type> **insPlace = (value > node->data) ? &(node->rightChild) : &(node->leftChild);
 	if ((*insPlace) == nullptr) {
 		(*insPlace) = new AVLTreeNode<Type>;
@@ -386,44 +386,44 @@ template<class Type>AVLTreeNode<Type>* AVLTree<Type>::Insert(Type value, AVLTree
 		*insPlace = Insert(value, *insPlace);
 	}
 
-	//¸üĞÂÊ÷¸ß¶È
+	//æ›´æ–°æ ‘é«˜åº¦
 	node->height = GetMaxChildHeight(node) + 1;
 
-	//Ê÷µÄÆ½ºâµ÷Õû
+	//æ ‘çš„å¹³è¡¡è°ƒæ•´
 	int balanceFactor = GetBalanceFactor(node);
 	if (balanceFactor == 0 || balanceFactor == 1 || balanceFactor == -1) return node;
-	if (balanceFactor > 1 && GetBalanceFactor(node->leftChild) > 0) { //LLĞÍ²»Æ½ºâ-ÓÒĞı
+	if (balanceFactor > 1 && GetBalanceFactor(node->leftChild) > 0) { //LLå‹ä¸å¹³è¡¡-å³æ—‹
 		return RotationR(node);
 	}
-	if (balanceFactor < -1 && GetBalanceFactor(node->rightChild) < 0) { //RRĞÍ²»Æ½ºâ-×óĞı
+	if (balanceFactor < -1 && GetBalanceFactor(node->rightChild) < 0) { //RRå‹ä¸å¹³è¡¡-å·¦æ—‹
 		return RotationL(node);
 	}
-	if (balanceFactor > 1 && GetBalanceFactor(node->leftChild) < 0) { //LRĞÍ²»Æ½ºâ-ÏÈ×óºóÓÒ
+	if (balanceFactor > 1 && GetBalanceFactor(node->leftChild) < 0) { //LRå‹ä¸å¹³è¡¡-å…ˆå·¦åå³
 		return RotationLR(node);
 	}
-	if (balanceFactor < -1 && GetBalanceFactor(node->rightChild)>0) {//RLĞÍ²»Æ½ºâ-ÏÈÓÒºó×ó
+	if (balanceFactor < -1 && GetBalanceFactor(node->rightChild)>0) {//RLå‹ä¸å¹³è¡¡-å…ˆå³åå·¦
 		return RotationRL(node);
 	}
 }
 //************************************
-// È«Ãû:  AVLTree::Insert
-// ¹¦ÄÜ: AVL ²åÈë
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: const Type & value Òª²åÈëµÄÔªËØ
+// å…¨å:  AVLTree::Insert
+// åŠŸèƒ½: AVL æ’å…¥
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: const Type & value è¦æ’å…¥çš„å…ƒç´ 
 //************************************
-template<class Type> void AVLTree<Type>::Insert(const Type& value) { //AVLÊ÷½áµã²åÈë-Íâ²¿µ÷ÓÃ
+template<class Type> void AVLTree<Type>::Insert(const Type& value) { //AVLæ ‘ç»“ç‚¹æ’å…¥-å¤–éƒ¨è°ƒç”¨
 	Insert(value, root);
 }
 //************************************
-// È«Ãû:  AVLTree::Find
-// ¹¦ÄÜ: AVL ²éÕÒ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   Type ²éÕÒµ½µÄÖµ
-// ²ÎÊı: Type value Òª²éÕÒµÄÖµµÄ¹Ø¼üÂë
-// ²ÎÊı: bool & success ²éÕÒ³É¹¦×´Ì¬
+// å…¨å:  AVLTree::Find
+// åŠŸèƒ½: AVL æŸ¥æ‰¾
+// æƒé™:    public 
+// è¿”å›:   Type æŸ¥æ‰¾åˆ°çš„å€¼
+// å‚æ•°: Type value è¦æŸ¥æ‰¾çš„å€¼çš„å…³é”®ç 
+// å‚æ•°: bool & success æŸ¥æ‰¾æˆåŠŸçŠ¶æ€
 //************************************
-template<class Type> Type AVLTree<Type>::Find(Type value, bool &success) { //²éÕÒ
+template<class Type> Type AVLTree<Type>::Find(Type value, bool &success) { //æŸ¥æ‰¾
 	success = 1;
 	AVLTreeNode<Type> *cur = root;
 	while (cur != nullptr) {
@@ -434,7 +434,7 @@ template<class Type> Type AVLTree<Type>::Find(Type value, bool &success) { //²éÕ
 	success = 0;
 	return value;
 }
-template<class Type> AVLTree<Type>::~AVLTree<Type>() { //Îö¹¹Æ½ºâÊ÷
+template<class Type> AVLTree<Type>::~AVLTree<Type>() { //ææ„å¹³è¡¡æ ‘
 	if (root == nullptr)return;
 	LinkedList<AVLTreeNode<Type>*> stack;
 	AVLTreeNode<Type>* stackTop;
@@ -448,7 +448,7 @@ template<class Type> AVLTree<Type>::~AVLTree<Type>() { //Îö¹¹Æ½ºâÊ÷
 	}
 }
 
-//¹şÏ£±í¿ªÊ¼
+//å“ˆå¸Œè¡¨å¼€å§‹
 HashTable::HashTable() {
 	bucket = new AVLTree<VertexInfo>[modFactor];
 }
@@ -458,11 +458,11 @@ HashTable::~HashTable() {
 	}
 }
 //************************************
-// È«Ãû:  HashTable::GetHashCode
-// ¹¦ÄÜ: »ñÈ¡Ò»¸ö×Ö·û´®µÄÉ¢ÁĞÖµ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   int ×Ö·û´®µÄÉ¢ÁĞÖµ
-// ²ÎÊı: std::string alias ÓÃÓÚ¼ÆËãµÄ×Ö·û´®
+// å…¨å:  HashTable::GetHashCode
+// åŠŸèƒ½: è·å–ä¸€ä¸ªå­—ç¬¦ä¸²çš„æ•£åˆ—å€¼
+// æƒé™:    public 
+// è¿”å›:   int å­—ç¬¦ä¸²çš„æ•£åˆ—å€¼
+// å‚æ•°: std::string alias ç”¨äºè®¡ç®—çš„å­—ç¬¦ä¸²
 //************************************
 int HashTable::GetHashCode(std::string alias) {
 	int strSz = alias.length();
@@ -475,11 +475,11 @@ int HashTable::GetHashCode(std::string alias) {
 	return ret;
 }
 //************************************
-// È«Ãû:  HashTable::Insert
-// ¹¦ÄÜ: ¹şÏ£±í²åÈë
-// È¨ÏŞ:    public 
-// ·µ»Ø:   AVLTreeNode<VertexInfo>* ²åÈëºó£¬¸ÃÖµËùÔÚµÄÉ¢ÁĞ±íµÄ¶ÔÓ¦HashÖµµÄAVLÊ÷ÖĞµÄAVL½áµãµØÖ·
-// ²ÎÊı: std::string alias Òª²åÈëµÄ×Ö·û´®
+// å…¨å:  HashTable::Insert
+// åŠŸèƒ½: å“ˆå¸Œè¡¨æ’å…¥
+// æƒé™:    public 
+// è¿”å›:   AVLTreeNode<VertexInfo>* æ’å…¥åï¼Œè¯¥å€¼æ‰€åœ¨çš„æ•£åˆ—è¡¨çš„å¯¹åº”Hashå€¼çš„AVLæ ‘ä¸­çš„AVLç»“ç‚¹åœ°å€
+// å‚æ•°: std::string alias è¦æ’å…¥çš„å­—ç¬¦ä¸²
 //************************************
 AVLTreeNode<VertexInfo>* HashTable::Insert(std::string alias) {
 	VertexInfo ins;
@@ -491,12 +491,12 @@ AVLTreeNode<VertexInfo>* HashTable::Insert(std::string alias) {
 	return bucket[hashcode].LastInsertedNode;
 }
 //************************************
-// È«Ãû:  HashTable::Find
-// ¹¦ÄÜ: ¹şÏ£±í²éÕÒ£¨°´ÕÕ¶¥µãÃû²éÑ¯¶¥µãĞÅÏ¢£©
-// È¨ÏŞ:    public 
-// ·µ»Ø:   VertexInfo ²éÕÒµ½µÄ¶¥µãĞÅÏ¢
-// ²ÎÊı: std::string alias Òª²éÕÒµÄÖµ
-// ²ÎÊı: bool & success ²éÕÒ³É¹¦×´Ì¬
+// å…¨å:  HashTable::Find
+// åŠŸèƒ½: å“ˆå¸Œè¡¨æŸ¥æ‰¾ï¼ˆæŒ‰ç…§é¡¶ç‚¹åæŸ¥è¯¢é¡¶ç‚¹ä¿¡æ¯ï¼‰
+// æƒé™:    public 
+// è¿”å›:   VertexInfo æŸ¥æ‰¾åˆ°çš„é¡¶ç‚¹ä¿¡æ¯
+// å‚æ•°: std::string alias è¦æŸ¥æ‰¾çš„å€¼
+// å‚æ•°: bool & success æŸ¥æ‰¾æˆåŠŸçŠ¶æ€
 //************************************
 VertexInfo HashTable::Find(std::string alias, bool &success) {
 	int hashcode = GetHashCode(alias);
@@ -506,23 +506,23 @@ VertexInfo HashTable::Find(std::string alias, bool &success) {
 	return ret;
 }
 
-//ÁÚ½Ó±í
+//é‚»æ¥è¡¨
 
-//Îª·½±ãÍ¼¶¥µãµÄ²åÈëÉ¾³ı£¬ÔÚ´ËÏîÄ¿ÖĞ½«Ô­ÁÚ½Ó±í£¨¿Î±¾ÄÚÈİ£©µÄµÚÒ»Î¬´ÓË³Ğò±í£¨Êı×é£©¸ÄÎªÁ´±í
-//Í¬Ê±£¬Ê¹ÓÃHash±í+AVLÊ÷×÷Îª²éÑ¯ÓÅ»¯£¬AVLÊ÷½áµãÁ´ÏòÁÚ½Ó±íµÄµÚÒ»Î¬ÖĞ¶ÔÓ¦¶¥µãµÄÁ´±í¶ÔÏó¡£
-//ÎªÁË±ÜÃâ¼«¶ËÇé¿öHash±íÖĞµÄµ¥Á´±í½á¹¹ÔÚ¼«¶ËµÄHash³åÍ»Çé¿öÏÂÊ±¼ä¸´ÔÓ¶È´ïµ½×î¸ß£¬¹ÊÏîÄ¿ÊµÏÖ½«µ¥Á´±í¸ÄÎªAVLÊ÷
-//ÉÏÊöÊµÏÖµÄÄ¿µÄÎª½«Ê±¼ä¸´ÔÓ¶È´ÓO(n)ÎÈ¶¨½µµÍÖÁO(logn)
-//¼´ÏîÄ¿ÖĞµÄÁÚ½Ó±íÓÉÇ¶Ì×Á´±íÊµÏÖ£¬ÆäÖĞµÚÒ»²ãÁ´±íÖĞ£¬Ã¿Ò»¸öÁ´±í½áµã´¢´æÒ»¸ö×ÓÁ´±í£¬×ÓÁ´±í±íÊ¾¸Ã¶¥µãµÄ³ö±ß
-//¾ßÌåµÄÊµÏÖ¿ÉÒÔ²Î¿¼ÏîÄ¿ÎÄµµ"8_1950641_»ÆÖÇÎÄ.docx"
+//ä¸ºæ–¹ä¾¿å›¾é¡¶ç‚¹çš„æ’å…¥åˆ é™¤ï¼Œåœ¨æ­¤é¡¹ç›®ä¸­å°†åŸé‚»æ¥è¡¨ï¼ˆè¯¾æœ¬å†…å®¹ï¼‰çš„ç¬¬ä¸€ç»´ä»é¡ºåºè¡¨ï¼ˆæ•°ç»„ï¼‰æ”¹ä¸ºé“¾è¡¨
+//åŒæ—¶ï¼Œä½¿ç”¨Hashè¡¨+AVLæ ‘ä½œä¸ºæŸ¥è¯¢ä¼˜åŒ–ï¼ŒAVLæ ‘ç»“ç‚¹é“¾å‘é‚»æ¥è¡¨çš„ç¬¬ä¸€ç»´ä¸­å¯¹åº”é¡¶ç‚¹çš„é“¾è¡¨å¯¹è±¡ã€‚
+//ä¸ºäº†é¿å…æç«¯æƒ…å†µHashè¡¨ä¸­çš„å•é“¾è¡¨ç»“æ„åœ¨æç«¯çš„Hashå†²çªæƒ…å†µä¸‹æ—¶é—´å¤æ‚åº¦è¾¾åˆ°æœ€é«˜ï¼Œæ•…é¡¹ç›®å®ç°å°†å•é“¾è¡¨æ”¹ä¸ºAVLæ ‘
+//ä¸Šè¿°å®ç°çš„ç›®çš„ä¸ºå°†æ—¶é—´å¤æ‚åº¦ä»O(n)ç¨³å®šé™ä½è‡³O(logn)
+//å³é¡¹ç›®ä¸­çš„é‚»æ¥è¡¨ç”±åµŒå¥—é“¾è¡¨å®ç°ï¼Œå…¶ä¸­ç¬¬ä¸€å±‚é“¾è¡¨ä¸­ï¼Œæ¯ä¸€ä¸ªé“¾è¡¨ç»“ç‚¹å‚¨å­˜ä¸€ä¸ªå­é“¾è¡¨ï¼Œå­é“¾è¡¨è¡¨ç¤ºè¯¥é¡¶ç‚¹çš„å‡ºè¾¹
+//å…·ä½“çš„å®ç°å¯ä»¥å‚è€ƒé¡¹ç›®æ–‡æ¡£"8.docx"
 
-//ÏÂÎÄ½«³ÆµÚÒ»²ãÁ´±íÎª¡¾µÚÒ»²ãÁ´±í¡¿£¬¸ÃÁ´±í½áµã±íÊ¾µÄ½áµãÔÚ²éÕÒ½á¹¹ÖĞ¶ÔÓ¦µÄ½áµã³ÆÎª¡¾(¶ÔÓ¦µÄ)AVL½áµã¡¿
-//Óë´«Í³ÁÚ½Ó±íÏàÍ¬µÄÁ´±í£¬¼´µÚÒ»²ãÁ´±íÖĞÄÚÇ¶µÄÁ´±í£¬³ÆÎª¡¾µÚ¶ş²ãÁ´±í¡¿£¨¼´½áµãµÄ³ö±ßÖÕµãµÄÁ´±í£©
+//ä¸‹æ–‡å°†ç§°ç¬¬ä¸€å±‚é“¾è¡¨ä¸ºã€ç¬¬ä¸€å±‚é“¾è¡¨ã€‘ï¼Œè¯¥é“¾è¡¨ç»“ç‚¹è¡¨ç¤ºçš„ç»“ç‚¹åœ¨æŸ¥æ‰¾ç»“æ„ä¸­å¯¹åº”çš„ç»“ç‚¹ç§°ä¸ºã€(å¯¹åº”çš„)AVLç»“ç‚¹ã€‘
+//ä¸ä¼ ç»Ÿé‚»æ¥è¡¨ç›¸åŒçš„é“¾è¡¨ï¼Œå³ç¬¬ä¸€å±‚é“¾è¡¨ä¸­å†…åµŒçš„é“¾è¡¨ï¼Œç§°ä¸ºã€ç¬¬äºŒå±‚é“¾è¡¨ã€‘ï¼ˆå³ç»“ç‚¹çš„å‡ºè¾¹ç»ˆç‚¹çš„é“¾è¡¨ï¼‰
 
 //************************************
-// È«Ãû:  AdjacentTable::InsertNewNode
-// ¹¦ÄÜ: ÁÚ½Ó±í£¬²åÈë½áµã£¨ÔÚµÚÒ»²ãÁ´±íÎ²²¿²åÈë½áµã£©
-// È¨ÏŞ:    public 
-// ·µ»Ø:   LinkedListNode<LinkedList<Edge>*>* ²åÈëµÄµÚÒ»²ãÁ´±íµÄ½áµãµØÖ·
+// å…¨å:  AdjacentTable::InsertNewNode
+// åŠŸèƒ½: é‚»æ¥è¡¨ï¼Œæ’å…¥ç»“ç‚¹ï¼ˆåœ¨ç¬¬ä¸€å±‚é“¾è¡¨å°¾éƒ¨æ’å…¥ç»“ç‚¹ï¼‰
+// æƒé™:    public 
+// è¿”å›:   LinkedListNode<LinkedList<Edge>*>* æ’å…¥çš„ç¬¬ä¸€å±‚é“¾è¡¨çš„ç»“ç‚¹åœ°å€
 //************************************
 LinkedListNode<LinkedList<Edge>*>* AdjacentTable::InsertNewNode() {
 	LinkedList<Edge>* w = new LinkedList<Edge>;
@@ -530,15 +530,15 @@ LinkedListNode<LinkedList<Edge>*>* AdjacentTable::InsertNewNode() {
 	return (table.GetTail());
 }
 //************************************
-// È«Ãû:  AdjacentTable::AddEdge
-// ¹¦ÄÜ: ÁÚ½Ó±í£¬²åÈëÁ¬±ß
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: LinkedListNode<LinkedList<Edge> * > * u ÆğµãÔÚµÚÒ»²ãÁ´±íÖĞ¶ÔÓ¦µÄ½áµãµØÖ·
-// ²ÎÊı: LinkedListNode<LinkedList<Edge> * > * v ÖÕµãÔÚµÚÒ»²ãÁ´±íÖĞ¶ÔÓ¦µÄ½áµãµØÖ·
-// ²ÎÊı: int w ±ßÈ¨
-// ²ÎÊı: AVLTreeNode<VertexInfo> * uInfPtr ÆğµãµÄAVL½áµãµØÖ·
-// ²ÎÊı: AVLTreeNode<VertexInfo> * vInfPtr ÖÕµãµÄAVL½áµãµØÖ·
+// å…¨å:  AdjacentTable::AddEdge
+// åŠŸèƒ½: é‚»æ¥è¡¨ï¼Œæ’å…¥è¿è¾¹
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: LinkedListNode<LinkedList<Edge> * > * u èµ·ç‚¹åœ¨ç¬¬ä¸€å±‚é“¾è¡¨ä¸­å¯¹åº”çš„ç»“ç‚¹åœ°å€
+// å‚æ•°: LinkedListNode<LinkedList<Edge> * > * v ç»ˆç‚¹åœ¨ç¬¬ä¸€å±‚é“¾è¡¨ä¸­å¯¹åº”çš„ç»“ç‚¹åœ°å€
+// å‚æ•°: int w è¾¹æƒ
+// å‚æ•°: AVLTreeNode<VertexInfo> * uInfPtr èµ·ç‚¹çš„AVLç»“ç‚¹åœ°å€
+// å‚æ•°: AVLTreeNode<VertexInfo> * vInfPtr ç»ˆç‚¹çš„AVLç»“ç‚¹åœ°å€
 //************************************
 void AdjacentTable::AddEdge(LinkedListNode<LinkedList<Edge>*>* u, LinkedListNode<LinkedList<Edge>*>* v, int w, AVLTreeNode<VertexInfo>* uInfPtr, AVLTreeNode<VertexInfo>* vInfPtr) {
 	Edge newEl;
@@ -549,19 +549,19 @@ void AdjacentTable::AddEdge(LinkedListNode<LinkedList<Edge>*>* u, LinkedListNode
 	u->data->InsertTail(newEl);
 }
 
-//Í¼µÄ´¢´æºÍ²éÕÒ
+//å›¾çš„å‚¨å­˜å’ŒæŸ¥æ‰¾
 //************************************
-// È«Ãû:  Graph::NewNode
-// ¹¦ÄÜ: Í¼£¬Ìí¼Ó½Úµã
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: std::string alias
+// å…¨å:  Graph::NewNode
+// åŠŸèƒ½: å›¾ï¼Œæ·»åŠ èŠ‚ç‚¹
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: std::string alias
 //************************************
 void Graph::NewNode(std::string alias) {
 	bool succ = false;
-	dict.Find(alias, succ); //²éÕÒ¸Ã½ÚµãÃû³ÆÊÇ·ñÒÑ¾­´æÔÚ
+	dict.Find(alias, succ); //æŸ¥æ‰¾è¯¥èŠ‚ç‚¹åç§°æ˜¯å¦å·²ç»å­˜åœ¨
 	if (succ == true) {
-		std::cout << "½áµãÃû³Æ:" << alias << "ÒÑ¾­´æÔÚ£¬ÖØ¸´µÄ½áµã½«²»»á±»ÖØ¸´¼ÓÈë" << std::endl;
+		std::cout << "ç»“ç‚¹åç§°:" << alias << "å·²ç»å­˜åœ¨ï¼Œé‡å¤çš„ç»“ç‚¹å°†ä¸ä¼šè¢«é‡å¤åŠ å…¥" << std::endl;
 		return;
 	}
 
@@ -573,18 +573,18 @@ void Graph::NewNode(std::string alias) {
 }
 
 //************************************
-// È«Ãû:  Graph::AddEdge
-// ¹¦ÄÜ: 
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: std::string u ÆğµãÃû³Æ
-// ²ÎÊı: std::string v ÖÕµãÃû³Æ
-// ²ÎÊı: int w ±ßÈ¨
-// ²ÎÊı: bool showTip ÊÇ·ñÏÔÊ¾²Ù×÷ÌáÊ¾ĞÅÏ¢
+// å…¨å:  Graph::AddEdge
+// åŠŸèƒ½: 
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: std::string u èµ·ç‚¹åç§°
+// å‚æ•°: std::string v ç»ˆç‚¹åç§°
+// å‚æ•°: int w è¾¹æƒ
+// å‚æ•°: bool showTip æ˜¯å¦æ˜¾ç¤ºæ“ä½œæç¤ºä¿¡æ¯
 //************************************
 void Graph::AddEdge(std::string u, std::string v, int w, bool showTip) {
 	bool ust, vst;
-	VertexInfo uid = dict.Find(u, ust), vid = dict.Find(v, vst); //È·¶¨¶¥µãÃû³ÆÊÇ·ñÓĞĞ§
+	VertexInfo uid = dict.Find(u, ust), vid = dict.Find(v, vst); //ç¡®å®šé¡¶ç‚¹åç§°æ˜¯å¦æœ‰æ•ˆ
 	if (ust&&vst) {
 		edgeCounter++;
 		adj.AddEdge((LinkedListNode<LinkedList<Edge>*>*) (uid.linklistNodePtr), (LinkedListNode<LinkedList<Edge>*>*) (vid.linklistNodePtr), w, uid.bstNodePtr, vid.bstNodePtr);
@@ -592,25 +592,25 @@ void Graph::AddEdge(std::string u, std::string v, int w, bool showTip) {
 	else {
 		if (showTip == false)return;
 		if (!ust && !vst) {
-			std::cout << "½áµãÃû³Æ:" << u << "Óë" << v << "¾ù²»´æÔÚ£¬´ËÌí¼Ó²Ù×÷ÒÑ±»ºöÂÔ" << std::endl;
+			std::cout << "ç»“ç‚¹åç§°:" << u << "ä¸" << v << "å‡ä¸å­˜åœ¨ï¼Œæ­¤æ·»åŠ æ“ä½œå·²è¢«å¿½ç•¥" << std::endl;
 		}
 		else if (!ust) {
-			std::cout << "½áµãÃû³Æ:" << u << "²»´æÔÚ£¬´ËÌí¼Ó²Ù×÷ÒÑ±»ºöÂÔ" << std::endl;
+			std::cout << "ç»“ç‚¹åç§°:" << u << "ä¸å­˜åœ¨ï¼Œæ­¤æ·»åŠ æ“ä½œå·²è¢«å¿½ç•¥" << std::endl;
 		}
 		else if (!vst) {
-			std::cout << "½áµãÃû³Æ:" << v << "²»´æÔÚ£¬´ËÌí¼Ó²Ù×÷ÒÑ±»ºöÂÔ" << std::endl;
+			std::cout << "ç»“ç‚¹åç§°:" << v << "ä¸å­˜åœ¨ï¼Œæ­¤æ·»åŠ æ“ä½œå·²è¢«å¿½ç•¥" << std::endl;
 		}
 	}
 }
 
 
-//¶Ñ
+//å †
 //************************************
-// È«Ãû:  MinHeap::Rebuild
-// ¹¦ÄÜ: ¶Ñ£¬ÖØ·ÖÅä¿Õ¼ä£¨Çå³ıÔ­ÓĞ¶ÑµÄÄÚÈİ£©£¬²¢ÖØ·ÖÅä´óĞ¡
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: int size
+// å…¨å:  MinHeap::Rebuild
+// åŠŸèƒ½: å †ï¼Œé‡åˆ†é…ç©ºé—´ï¼ˆæ¸…é™¤åŸæœ‰å †çš„å†…å®¹ï¼‰ï¼Œå¹¶é‡åˆ†é…å¤§å°
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: int size
 //************************************
 template<class Type> void MinHeap<Type>::Rebuild(int size) {
 	if (heapArray != nullptr)delete[]heapArray;
@@ -618,42 +618,42 @@ template<class Type> void MinHeap<Type>::Rebuild(int size) {
 	heapSize = 0;
 }
 //************************************
-// È«Ãû:  MinHeap::GetTop
-// ¹¦ÄÜ: »ñÈ¡¶Ñ¶¥ÔªËØ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   Type
+// å…¨å:  MinHeap::GetTop
+// åŠŸèƒ½: è·å–å †é¡¶å…ƒç´ 
+// æƒé™:    public 
+// è¿”å›:   Type
 //************************************
 template<class Type> Type MinHeap<Type>::GetTop() {
 	return heapArray[1];
 }
 //************************************
-// È«Ãû:  MinHeap::Insert
-// ¹¦ÄÜ: ¶Ñ£¬²åÈëÔªËØ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: Type x ÔªËØµÄÖµ
+// å…¨å:  MinHeap::Insert
+// åŠŸèƒ½: å †ï¼Œæ’å…¥å…ƒç´ 
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: Type x å…ƒç´ çš„å€¼
 //************************************
 template<class Type> void MinHeap<Type>::Insert(Type x) {
 	heapArray[++heapSize] = x;
 	SiftUp(heapSize);
 }
 //************************************
-// È«Ãû:  MinHeap::Pop
-// ¹¦ÄÜ: ¶Ñ£¬µ¯³ö¶Ñ¶¥ÔªËØ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
+// å…¨å:  MinHeap::Pop
+// åŠŸèƒ½: å †ï¼Œå¼¹å‡ºå †é¡¶å…ƒç´ 
+// æƒé™:    public 
+// è¿”å›:   void
 //************************************
 template<class Type> void MinHeap<Type>::Pop() {
 	heapArray[1] = heapArray[heapSize--];
 	SiftDown(1);
 }
 //************************************
-// È«Ãû:  MinHeap::Swap
-// ¹¦ÄÜ: ½»»»ÔªËØ
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: Type & x
-// ²ÎÊı: Type & y
+// å…¨å:  MinHeap::Swap
+// åŠŸèƒ½: äº¤æ¢å…ƒç´ 
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: Type & x
+// å‚æ•°: Type & y
 //************************************
 template<class Type> void MinHeap<Type>::Swap(Type& x, Type& y) {
 	Type tmp = x;
@@ -661,11 +661,11 @@ template<class Type> void MinHeap<Type>::Swap(Type& x, Type& y) {
 	y = tmp;
 }
 //************************************
-// È«Ãû:  MinHeap::SiftUp
-// ¹¦ÄÜ: ¶Ñ£¬×ÔÏÂÏòÉÏµ÷Õû
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: int node
+// å…¨å:  MinHeap::SiftUp
+// åŠŸèƒ½: å †ï¼Œè‡ªä¸‹å‘ä¸Šè°ƒæ•´
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: int node
 //************************************
 template<class Type> void MinHeap<Type>::SiftUp(int node) {
 	int cur = node, curParent = node >> 1;
@@ -677,11 +677,11 @@ template<class Type> void MinHeap<Type>::SiftUp(int node) {
 	}
 }
 //************************************
-// È«Ãû:  MinHeap::SiftDown
-// ¹¦ÄÜ: ¶Ñ£¬×ÔÉÏÏòÏÂµ÷Õû
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: int node
+// å…¨å:  MinHeap::SiftDown
+// åŠŸèƒ½: å †ï¼Œè‡ªä¸Šå‘ä¸‹è°ƒæ•´
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: int node
 //************************************
 template<class Type> void MinHeap<Type>::SiftDown(int node) {
 	int cur = node, curChild = node << 1;
@@ -696,30 +696,30 @@ template<class Type> void MinHeap<Type>::SiftDown(int node) {
 	}
 }
 
-//×îĞ¡Éú³ÉÊ÷
+//æœ€å°ç”Ÿæˆæ ‘
 
 //************************************
-// È«Ãû:  MinSpanningTree::NewNode
-// ¹¦ÄÜ: ĞÂ½¨¶¥µã
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: std::string alias ¶¥µãÃû³Æ
+// å…¨å:  MinSpanningTree::NewNode
+// åŠŸèƒ½: æ–°å»ºé¡¶ç‚¹
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: std::string alias é¡¶ç‚¹åç§°
 //************************************
 void MinSpanningTree::NewNode(std::string alias) {
 	GraphInfo.NewNode(alias);
 }
 //************************************
-// È«Ãû:  MinSpanningTree::AddEdge
-// ¹¦ÄÜ: ĞÂ½¨Á¬±ß£¨Í¬Ê±¼ì²éÊÇ·ñ¹¹³É¶àÖØÍ¼£©
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: std::string u ÆğµãÃû³Æ
-// ²ÎÊı: std::string v ÖÕµãÃû³Æ
-// ²ÎÊı: int w ±ßÈ¨
+// å…¨å:  MinSpanningTree::AddEdge
+// åŠŸèƒ½: æ–°å»ºè¿è¾¹ï¼ˆåŒæ—¶æ£€æŸ¥æ˜¯å¦æ„æˆå¤šé‡å›¾ï¼‰
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: std::string u èµ·ç‚¹åç§°
+// å‚æ•°: std::string v ç»ˆç‚¹åç§°
+// å‚æ•°: int w è¾¹æƒ
 //************************************
 void MinSpanningTree::AddEdge(std::string u, std::string v, int w) {
 	if (u == v) {
-		std::cout << "²»ÔÊĞí³öÏÖ×ÔÉíµ½×ÔÉíµÄ±ß£¬´Ë¼Ó±ß²Ù×÷ÒÑ·ÅÆú¡£" << std::endl;
+		std::cout << "ä¸å…è®¸å‡ºç°è‡ªèº«åˆ°è‡ªèº«çš„è¾¹ï¼Œæ­¤åŠ è¾¹æ“ä½œå·²æ”¾å¼ƒã€‚" << std::endl;
 		return;
 	}
 	if (!ALLOW_MULTIEDGE) {
@@ -730,7 +730,7 @@ void MinSpanningTree::AddEdge(std::string u, std::string v, int w) {
 		MultipleEdgeCheck.Find(InsPair, InsPairFound);
 		MultipleEdgeCheck.Find(InsPairRev, InsPairRevFound);
 		if (InsPairFound || InsPairFound) {
-			std::cout << "Á½¸ö¶¥µãÖ®¼äÒÑ¾­ÓĞÁ¬±ß£¬ÓÉÓÚÏîÄ¿ÒªÇóÏŞÖÆ£¬¶àÖØ±ß²»±»ÔÊĞí£¬¹Ê´Ë¼Ó±ß²Ù×÷ÒÑ·ÅÆú" << std::endl;
+			std::cout << "ä¸¤ä¸ªé¡¶ç‚¹ä¹‹é—´å·²ç»æœ‰è¿è¾¹ï¼Œç”±äºé¡¹ç›®è¦æ±‚é™åˆ¶ï¼Œå¤šé‡è¾¹ä¸è¢«å…è®¸ï¼Œæ•…æ­¤åŠ è¾¹æ“ä½œå·²æ”¾å¼ƒ" << std::endl;
 			return;
 		}
 		MultipleEdgeCheck.Insert(InsPair);
@@ -745,35 +745,35 @@ void MinSpanningTree::AddEdge(std::string u, std::string v, int w) {
 }
 
 //************************************
-// È«Ãû:  MinSpanningTree::SolveMST_Prim
-// ¹¦ÄÜ: Ê¹ÓÃ¶ÑÓÅ»¯µÄPrimÇó½â×îĞ¡Éú³ÉÊ÷
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
-// ²ÎÊı: std::string startingPoint ÆğµãÃû³Æ
+// å…¨å:  MinSpanningTree::SolveMST_Prim
+// åŠŸèƒ½: ä½¿ç”¨å †ä¼˜åŒ–çš„Primæ±‚è§£æœ€å°ç”Ÿæˆæ ‘
+// æƒé™:    public 
+// è¿”å›:   void
+// å‚æ•°: std::string startingPoint èµ·ç‚¹åç§°
 //************************************
 void MinSpanningTree::SolveMST_Prim(std::string startingPoint) {
-	//½¨Á¢±ß¶Ñ
+	//å»ºç«‹è¾¹å †
 	MinHeap<Edge> Heap;
 	Heap.Rebuild(GraphInfo.edgeCounter);
 	Edge HeapTop;
-	//»ñÈ¡ÆğµãËùÔÚ½áµã
+	//è·å–èµ·ç‚¹æ‰€åœ¨ç»“ç‚¹
 	bool success;
 	VertexInfo startPt = GraphInfo.dict.Find(startingPoint, success);
 	if (!success) {
-		std::cout << "¶¥µã²»´æÔÚ" << std::endl;
+		std::cout << "é¡¶ç‚¹ä¸å­˜åœ¨" << std::endl;
 		return;
 	}
-	//·ÃÎÊ×´Ì¬
+	//è®¿é—®çŠ¶æ€
 	bool *visitedStatus = new bool[GraphInfo.vertexCounter];
 	for (int i = 0; i < GraphInfo.vertexCounter; i++) visitedStatus[i] = false;
-	//³õÊ¼µã¸üĞÂ×´Ì¬
+	//åˆå§‹ç‚¹æ›´æ–°çŠ¶æ€
 	visitedStatus[startPt.identity] = true;
 	for (LinkedListNode<Edge>*i = (startPt.linklistNodePtr->data)->GetHead()->succ; i != nullptr; i = i->succ) {
 		if (visitedStatus[((AVLTreeNode<VertexInfo>*)(i->data.vInfPtr))->data.identity] == false) {
 			Heap.Insert(i->data);
 		}
 	}
-	//¹¹½¨MST
+	//æ„å»ºMST
 	while (Heap.heapSize) {
 		HeapTop = Heap.GetTop();
 		Heap.Pop();
@@ -789,34 +789,34 @@ void MinSpanningTree::SolveMST_Prim(std::string startingPoint) {
 		}
 	}
 
-	//ÅĞ¶ÏÁ¬Í¨ĞÔ
+	//åˆ¤æ–­è¿é€šæ€§
 	for (int i = 0; i < GraphInfo.vertexCounter; i++) {
 		if (!visitedStatus[i]) {
-			std::cout << "ÌáÊ¾£ºÔ­Í¼Î´Á¬Í¨£¬Çó½âµÄ×îĞ¡Éú³ÉÊ÷²»ÍêÕû¡£" << std::endl;
+			std::cout << "æç¤ºï¼šåŸå›¾æœªè¿é€šï¼Œæ±‚è§£çš„æœ€å°ç”Ÿæˆæ ‘ä¸å®Œæ•´ã€‚" << std::endl;
 			delete[] visitedStatus;
 			return;
 		}
 	}
-	//ÊÍ·Å¿Õ¼ä
+	//é‡Šæ”¾ç©ºé—´
 	delete[] visitedStatus;
-	std::cout << "ÒÑ¾­Éú³ÉPrim×îĞ¡Éú³ÉÊ÷" << std::endl;
+	std::cout << "å·²ç»ç”ŸæˆPrimæœ€å°ç”Ÿæˆæ ‘" << std::endl;
 	AnswerStat = true;
 }
 //************************************
-// È«Ãû:  MinSpanningTree::PrintResult
-// ¹¦ÄÜ: Êä³ö×îĞ¡Éú³ÉÊ÷½á¹û
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
+// å…¨å:  MinSpanningTree::PrintResult
+// åŠŸèƒ½: è¾“å‡ºæœ€å°ç”Ÿæˆæ ‘ç»“æœ
+// æƒé™:    public 
+// è¿”å›:   void
 //************************************
 void MinSpanningTree::PrintResult() {
-	//½á¹ûÊä³ö
-	if (AnswerStat == false) {//½á¹ûÎ´Éú³ÉÊ±µÄ´¦Àí
-		std::cout << "ÇëÏÈÉú³É×îĞ¡Éú³ÉÊ÷ºó£¬ÔÙ²é¿´½á¹û¡£" << std::endl;
+	//ç»“æœè¾“å‡º
+	if (AnswerStat == false) {//ç»“æœæœªç”Ÿæˆæ—¶çš„å¤„ç†
+		std::cout << "è¯·å…ˆç”Ÿæˆæœ€å°ç”Ÿæˆæ ‘åï¼Œå†æŸ¥çœ‹ç»“æœã€‚" << std::endl;
 		return;
 	}
-	std::cout << "×îĞ¡Éú³ÉÊ÷µÄ¶¥µã¼°±ßÎª£º" << std::endl << std::endl;
+	std::cout << "æœ€å°ç”Ÿæˆæ ‘çš„é¡¶ç‚¹åŠè¾¹ä¸ºï¼š" << std::endl << std::endl;
 	VertexInfo u, v;
-	for (LinkedListNode<Edge>* i = Result.GetHead()->succ; i != nullptr; i = i->succ) {//±éÀú½á¹ûÁ´±í
+	for (LinkedListNode<Edge>* i = Result.GetHead()->succ; i != nullptr; i = i->succ) {//éå†ç»“æœé“¾è¡¨
 		u = ((AVLTreeNode<VertexInfo>*)(i->data.uInfPtr))->data;
 		v = ((AVLTreeNode<VertexInfo>*)(i->data.vInfPtr))->data;
 		std::cout << u.alias << "-(" << i->data.weight << ")->" << v.alias << "\t";
@@ -824,36 +824,36 @@ void MinSpanningTree::PrintResult() {
 	std::cout << std::endl;
 }
 
-//Ôì¼ÛÏµÍ³
+//é€ ä»·ç³»ç»Ÿ
 //************************************
-// È«Ãû:  ElectricitySystem_Solution::ShowMenu
-// ¹¦ÄÜ: Ôì¼ÛÏµÍ³£¬ÏÔÊ¾²Ëµ¥
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
+// å…¨å:  ElectricitySystem_Solution::ShowMenu
+// åŠŸèƒ½: é€ ä»·ç³»ç»Ÿï¼Œæ˜¾ç¤ºèœå•
+// æƒé™:    public 
+// è¿”å›:   void
 //************************************
 void ElectricitySystem_Solution::ShowMenu() {
 	std::cout << std::endl;
-	std::cout << "**\t\tµçÍøÔì¼ÛÄ£ÄâÏµÍ³\t\t**" << std::endl;
+	std::cout << "**\t\tç”µç½‘é€ ä»·æ¨¡æ‹Ÿç³»ç»Ÿ\t\t**" << std::endl;
 	std::cout << "==================================================" << std::endl;
-	std::cout << "**\t\tA --- ´´½¨µçÍø¶¥µã\t\t**" << std::endl;
-	std::cout << "**\t\tB --- Ìí¼ÓµçÍøµÄ±ß\t\t**" << std::endl;
-	std::cout << "**\t\tC --- ¹¹Ôì×îĞ¡Éú³ÉÊ÷\t\t**" << std::endl;
-	std::cout << "**\t\tD --- ÏÔÊ¾×îĞ¡Éú³ÉÊ÷\t\t**" << std::endl;
-	std::cout << "**\t\tE --- ÍË³ö  ³ÌĞò\t\t**" << std::endl;
+	std::cout << "**\t\tA --- åˆ›å»ºç”µç½‘é¡¶ç‚¹\t\t**" << std::endl;
+	std::cout << "**\t\tB --- æ·»åŠ ç”µç½‘çš„è¾¹\t\t**" << std::endl;
+	std::cout << "**\t\tC --- æ„é€ æœ€å°ç”Ÿæˆæ ‘\t\t**" << std::endl;
+	std::cout << "**\t\tD --- æ˜¾ç¤ºæœ€å°ç”Ÿæˆæ ‘\t\t**" << std::endl;
+	std::cout << "**\t\tE --- é€€å‡º  ç¨‹åº\t\t**" << std::endl;
 }
 
 //************************************
-// È«Ãû:  ElectricitySystem_Solution::Main
-// ¹¦ÄÜ: Ôì¼ÛÏµÍ³£¬Ö÷¹ı³Ì
-// È¨ÏŞ:    public 
-// ·µ»Ø:   void
+// å…¨å:  ElectricitySystem_Solution::Main
+// åŠŸèƒ½: é€ ä»·ç³»ç»Ÿï¼Œä¸»è¿‡ç¨‹
+// æƒé™:    public 
+// è¿”å›:   void
 //************************************
 void ElectricitySystem_Solution::Main() {
 	ShowMenu();
 	std::string inputOption;
 	while (1) {
 		std::cout << std::endl;
-		std::cout << "ÇëÑ¡Ôñ²Ù×÷£º";
+		std::cout << "è¯·é€‰æ‹©æ“ä½œï¼š";
 		//std::getline(std::cin, inputOption);
 		std::cin >> inputOption;
 		if (inputOption.length() != 1)continue;
@@ -862,21 +862,21 @@ void ElectricitySystem_Solution::Main() {
 		std::string vertexNameA, vertexNameB;
 		std::string readIn;
 		switch (inputOption[0]) {
-		case 'A': //½¨Á¢¶¥µã
+		case 'A': //å»ºç«‹é¡¶ç‚¹
 			while (1) {
-				std::cout << "ÇëÊäÈë¶¥µãµÄ¸öÊı: ";
+				std::cout << "è¯·è¾“å…¥é¡¶ç‚¹çš„ä¸ªæ•°: ";
 				std::cin >> readIn;
 				if (isDigitStr(readIn)) {
 					try {
 						newVertexCount = std::stoi(readIn);
 					}
 					catch (std::out_of_range) {
-						std::cout << "ÊäÈëµÄÊı×ÖÌ«´ó£¬ÇëÖØĞÂÊäÈë" << std::endl;
+						std::cout << "è¾“å…¥çš„æ•°å­—å¤ªå¤§ï¼Œè¯·é‡æ–°è¾“å…¥" << std::endl;
 						continue;
 					}
 					break;
 				}
-				std::cout << "ÊäÈëµÄ²»ÊÇÓĞĞ§Êı×Ö£¬ÇëÖØĞÂÊäÈë" << std::endl;
+				std::cout << "è¾“å…¥çš„ä¸æ˜¯æœ‰æ•ˆæ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥" << std::endl;
 				std::cin.clear();
 				std::cin.ignore(INT_MAX, '\n');
 			}
@@ -889,10 +889,10 @@ void ElectricitySystem_Solution::Main() {
 			}
 
 			break;
-		case 'B': //½¨Á¢±ß
-			std::cout << "£¨ÈôÒªÍ£Ö¹ÊäÈë£¬ÇëÊäÈë? ? 0ºó»Ø³µ£© " << std::endl;
+		case 'B': //å»ºç«‹è¾¹
+			std::cout << "ï¼ˆè‹¥è¦åœæ­¢è¾“å…¥ï¼Œè¯·è¾“å…¥? ? 0åå›è½¦ï¼‰ " << std::endl;
 			while (1) {
-				std::cout << "ÇëÊäÈëÁ½¸ö¶¥µã¼°±ß: ";
+				std::cout << "è¯·è¾“å…¥ä¸¤ä¸ªé¡¶ç‚¹åŠè¾¹: ";
 				std::cin >> vertexNameA >> vertexNameB;
 				std::cin >> readIn;
 
@@ -901,12 +901,12 @@ void ElectricitySystem_Solution::Main() {
 						edgeWeight = std::stoi(readIn);
 					}
 					catch (std::out_of_range) {
-						std::cout << "±ßÈ¨ÊäÈëµÄÊı×ÖÌ«´ó£¬ÇëÖØĞÂÊäÈë" << std::endl;
+						std::cout << "è¾¹æƒè¾“å…¥çš„æ•°å­—å¤ªå¤§ï¼Œè¯·é‡æ–°è¾“å…¥" << std::endl;
 						continue;
 					}
 				}
 				else {
-					std::cout << "±ßµÄÈ¨ÖµÊäÈëµÄ²»ÊÇÕıÕûÊı£¬ÇëÖØĞÂÊäÈë" << std::endl;
+					std::cout << "è¾¹çš„æƒå€¼è¾“å…¥çš„ä¸æ˜¯æ­£æ•´æ•°ï¼Œè¯·é‡æ–°è¾“å…¥" << std::endl;
 					continue;
 				}
 
@@ -917,20 +917,20 @@ void ElectricitySystem_Solution::Main() {
 				MST.AnswerStat = false;
 			}
 			break;
-		case 'C': //¹¹Ôì×îĞ¡Éú³ÉÊ÷
+		case 'C': //æ„é€ æœ€å°ç”Ÿæˆæ ‘
 			MST.ClearResult();
 			MST.AnswerStat = false;
-			std::cout << "ÇëÊäÈëÆğÊ¼¶¥µã:";
+			std::cout << "è¯·è¾“å…¥èµ·å§‹é¡¶ç‚¹:";
 			std::cin >> vertexNameA;
 			MST.SolveMST_Prim(vertexNameA);
 			break;
-		case 'D': //Êä³ö½á¹û
+		case 'D': //è¾“å‡ºç»“æœ
 			MST.PrintResult();
 			break;
 		case 'E':
 			return;
 		default:
-			std::cout << "²Ù×÷ÂëÎŞĞ§£¬ÇëÊäÈëA~EÖĞµÄ²Ù×÷Âë¡£" << std::endl;
+			std::cout << "æ“ä½œç æ— æ•ˆï¼Œè¯·è¾“å…¥A~Eä¸­çš„æ“ä½œç ã€‚" << std::endl;
 		}
 	}
 	std::cout << std::endl;
