@@ -6,7 +6,7 @@ The repository contains past projects of course assignments. They are no longer 
 
 协议 / License
 ------
-GNU General Public License v3 (GNU GPL v3)
+General Public License v3 (GPL v3)
 
 Content
 ------
