@@ -1,8 +1,12 @@
-Course Projects 课程项目
+Course Projects 
 ===
-同济大学软件工程 课程项目 / Tongji SSE Course Projects
+Tongji SSE Course Projects
 
 The repository contains past projects of course assignments. They are no longer private for the assignemnts have already been viewed and ranked.
+
+协议 / License
+------
+GNU General Public License v3 (GNU GPL v3)
 
 Content
 ------
