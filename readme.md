@@ -2,7 +2,7 @@ Course Projects
 ===
 Tongji SSE Course Projects
 
-The repository contains past projects of course assignments. They are no longer private for the assignemnts have already been viewed and ranked.
+The repository contains past projects of course assignments. They are no longer private for the assignments have already been viewed and ranked.
 
 协议 / License
 ------
